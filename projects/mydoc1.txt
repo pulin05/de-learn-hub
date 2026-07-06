@@ -1,0 +1,29 @@
+  Quick Command Summary                                                                                                                                                                            
+  ┌──────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────┐                                                                        
+  │                                   Command                                    │                Purpose                 │                                                                        
+  ├──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────┤                                                                        
+  │ python scripts/get_access_token.py                                           │ Get daily access token (opens browser) │                                                                        
+  ├──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────┤                                                                        
+  │ python scripts/get_access_token.py --status                                  │ Check if token is valid                │                                                                        
+  ├──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────┤                                                                        
+  │ python scripts/fetch_historical.py --list nifty50 --timeframes day --dry-run │ Preview what will be fetched           │                                                                        
+  ├──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────┤                                                                        
+  │ python scripts/fetch_historical.py --list nifty50 --timeframes day           │ Actually fetch the data                │                                                                        
+  ├──────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────┤                                                                        
+  │ python scripts/check_status.py                                               │ See download progress                  │                                                                        
+  └──────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────┘      
+
+  python scripts/fetch_historical.py --symbol INFY --timeframes day
+
+    You can now set up your cron job for fully automated daily downloads:                                                                 
+                                                                                                                                        
+  # Add to crontab (crontab -e)                                                                                                         
+  30 7 * * * cd /Users/pulin05/kalkey/kalkey && python scripts/orchestrate_download.py --query nse_equities --frequencies day           
+  --auto-login >> logs/download.log 2>&1  
+
+  python scripts/orchestrate_download.py --query custom_filter --frequencies 60minute --auto-login 
+
+  python scripts/orchestrate_download.py --query custom_filter --frequencies day
+  python scripts/orchestrate_download.py --query nse_indices --frequencies 60minute
+  python scripts/orchestrate_download.py --query-file scripts/queries/custom_fil  ter.sql --frequencies 15minute
+  python scripts/orchestrate_download.py --query-file scripts/queries/bse_equities.sql --frequencies day
