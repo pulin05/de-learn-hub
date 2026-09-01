@@ -6,3 +6,5 @@ class Car:
 
 my_car = Car("Toyota", "Camry")
 print(my_car)
+
+print("This is my car:", my_car.brand, my_car.model)
